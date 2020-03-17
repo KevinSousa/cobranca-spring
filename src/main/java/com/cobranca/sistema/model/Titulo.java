@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -23,11 +25,16 @@ public class Titulo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotEmpty(message = "Campo DESCRICAO é obrigatório")
 	private String descricao;
+	
+	@NotNull(message = "Campo DATA DE VENCIMENTO é obrigatório")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
 
+	@NotNull(message = "Campo VALOR é obrigatório")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 
@@ -84,7 +91,7 @@ public class Titulo {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
-	
+
 	public boolean isPendente() {
 		return StatusTitulo.PENDENTE.equals(this.status);
 	}

@@ -14,11 +14,18 @@
 					<h5>Novo Título</h5>
 					<a href="/titulos">Lista de títulos</a>
 				</div>
-				<form id="formulario" class="m-3" method="post" action="/titulos">
+				<form id="formulario" class="m-3" method="post" action="/titulos"
+					th:object="${titulo}">
 					<br />
 					<div class="alert alert-success" role="alert"
 						th:if="${!#strings.isEmpty(mensagem)}">
 						<span th:text="${mensagem}"></span>
+					</div>
+					<div class="alert alert-danger" role="alert"
+						th:if="${#fields.hasAnyErrors()}">
+						<div th:each="detailedError : ${#fields.detailedErrors()}">
+							<span th:text="${detailedError.message}"></span>
+						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-2 col-form-label"><b>Descrição</b></label>
@@ -35,7 +42,7 @@
 								name="dataVencimento">
 						</div>
 					</div>
-					<div class="form-group row">
+					<div class="form-group row" th:classappend="${#fields.hasErrors('valor')} ? has-error">
 						<label for="inputPassword3" class="col-sm-2 col-form-label"><b>Valor</b></label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control" id="valor" name="valor">
