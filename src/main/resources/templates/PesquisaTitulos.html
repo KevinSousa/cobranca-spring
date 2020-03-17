@@ -21,7 +21,7 @@
 							<th>Descrição</th>
 							<th>Data de Vencimento</th>
 							<th>Valor</th>
-							<th>Status</th>
+							<th	>Status</th>
 							<th>Ação</th>
 						</tr>
 					</thead>
@@ -30,8 +30,10 @@
 							<td th:text="${titulo.id}"></td>
 							<td th:text="${titulo.descricao}"></td>
 							<td th:text="${titulo.dataVencimento}"></td>
-							<td th:text="${titulo.valor}"></td>
-							<td th:text="${titulo.status.descricao}"></td>
+							<td th:text="|R$ ${{titulo.valor}}|"></td>
+							<td>
+								<span class="badge" th:classappend="${titulo.pendente ? 'badge-danger' : 'badge-success'}" th:text="${titulo.status.descricao}"></span>
+							</td>
 							<td><a href="#"><i class="fas fa-trash">Deletar</i></a> <a
 								href="#"><i class="fas fa-pencil-alt">Editar</i></a></td>
 						</tr>

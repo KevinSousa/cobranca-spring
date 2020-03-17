@@ -3,8 +3,7 @@ package com.cobranca.sistema.model.enums;
 public enum StatusTitulo {
 
 	PENDENTE ("Pendente"),
-	RECEBIDO ("Recebido"),
-	CANCELADO ("Cancelado");
+	RECEBIDO ("Recebido");
 	
 	private String descricao;
 

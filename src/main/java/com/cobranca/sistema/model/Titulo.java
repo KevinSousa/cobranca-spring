@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import com.cobranca.sistema.model.enums.StatusTitulo;
 
@@ -27,6 +28,7 @@ public class Titulo {
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
 
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 
 	@Enumerated(EnumType.STRING)
@@ -81,6 +83,10 @@ public class Titulo {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+	
+	public boolean isPendente() {
+		return StatusTitulo.PENDENTE.equals(this.status);
 	}
 
 	@Override
